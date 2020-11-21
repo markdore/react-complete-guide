@@ -13,20 +13,20 @@ class App extends Component {
     showPersons: false
   }
 
-  switchNameHandler = (newName, newAge) => {
-    this.setState({persons: [
-      { name: "Mark", age: 37 },
-      { name: "Lucy", age: 25 },
-      { name: newName, age: newAge }
-    ]});
-  }
-
   nameChangedHandler = (event) => {
     this.setState({persons: [
       { name: "Mark", age: 37 },
       { name: event.target.value, age: 25 },
       { name: "Sammy", age: 8 }
     ]});
+  }
+
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+
+    persons.splice(personIndex, 1);
+
+    this.setState({persons: persons});
   }
 
   togglePersonHandler = () => {
@@ -46,21 +46,14 @@ class App extends Component {
     let persons = null;
     if (this.state.showPersons) {
       persons = (
-        <div >
-            <Person 
-              name={this.state.persons[0].name} 
-              age={this.state.persons[0].age} 
-              click={this.switchNameHandler.bind(this, "Amelia", 1)} />  
-              {/* More efficient way of doing it */}
-            <Person 
-              name={this.state.persons[1].name} 
-              age={this.state.persons[1].age}
-              changed={this.nameChangedHandler} >My lovely wife
-            </Person>
-            <Person 
-              name={this.state.persons[2].name} 
-              age={this.state.persons[2].age} />
-          </div>
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person 
+              click={() => this.deletePersonHandler(index)}
+              name={person.name} 
+              age={person.age} />
+          })}
+        </div>
       );
     } 
     return (
@@ -70,7 +63,7 @@ class App extends Component {
 
         <button 
           style={style}
-          onClick={this.togglePersonHandler}>Show People</button>
+          onClick={this.togglePersonHandler}>Toggle People</button>
 
         {persons}
       </div>

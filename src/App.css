@@ -11,7 +11,7 @@
 }
 
 .Button {
-  background-color: 'green';
+  background-color: green;
   color: white;
   font: inherit;
   border: 1px solid blue;
@@ -20,14 +20,14 @@
 }
 
 .Button:hover {
-  background-color: 'lightgreen';
+  background-color: lightgreen;
   color: purple;
 }
 
 .Button.Red {
-  background-color: 'red';
+  background-color: red;
 }
 
 .Button.Red:hover {
-  background-color: 'salmon';
+  background-color: salmon;
 }

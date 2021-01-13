@@ -17,10 +17,10 @@ const cockpit = (props) => {
 
   return (
     <div className={classes.Cockpit}>
-      <h1>YO</h1>
+      <h1>{props.title}</h1>
 
       <p className={assignedClasses.join(" ")}>This is really working</p>
-      <button class={btnClass.join(" ")} onClick={props.toggle}>
+      <button className={btnClass.join(" ")} onClick={props.toggle}>
         Toggle People
       </button>
     </div>

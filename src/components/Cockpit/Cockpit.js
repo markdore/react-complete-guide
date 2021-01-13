@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = (props) => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect');
+    // could send HTTP Request
+    // componentDidMount and componentDidUpdate in one really
+    const timer = setTimeout(() => {
+      alert('saved data to cloud!')
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer);
+      console.log('[Cockpit.js] cleanUp functionality in useEffect'); 
+    }
+  }, []) // passing props.persons would mean this is executed whenever this property is changed.  Empty means only on load and unmount (compDidMount)
+
   const assignedClasses = [];
   if (props.persons.length <= 2) {
     assignedClasses.push(classes.red);

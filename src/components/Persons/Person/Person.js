@@ -19,7 +19,7 @@ class Person extends Component {
   render() {
     console.log("[Person.js] rendering");
     return (
-      <Aux>
+      <Aux> 
         <StyledDiv>
           <p onClick={this.props.click}>
             I am {this.props.name} and I am {this.props.age} years old
@@ -32,7 +32,7 @@ class Person extends Component {
           ></input>
         </StyledDiv>
         <StyledDiv>
-          <p>Adjacent top level element</p>
+          <p>Extra spacing for adjacent top level element</p>
         </StyledDiv>
       </Aux>
     );

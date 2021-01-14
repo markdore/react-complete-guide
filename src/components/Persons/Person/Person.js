@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Person.css";
 import styled from "styled-components";
 import Aux from '../../../hoc/Aux';
+import PropTypes from 'prop-types';
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -38,5 +39,12 @@ class Person extends Component {
     );
   }
 }
+
+Person.propTypes = {
+    click: PropTypes.func,
+    changed: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number
+};
 
 export default Person;

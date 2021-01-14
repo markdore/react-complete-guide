@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = (props) => {
+  const buttonRef = useRef(null);
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
     // could send HTTP Request
     // componentDidMount and componentDidUpdate in one really
-    const timer = setTimeout(() => {
-      alert('saved data to cloud!')
-    }, 1000)
+    // const timer = setTimeout(() => {
+    //   alert('saved data to cloud!')
+    // }, 1000)
+
+    buttonRef.current.click();
 
     return () => {
-      clearTimeout(timer);
+      // clearTimeout(timer);
       console.log('[Cockpit.js] cleanUp functionality in useEffect'); 
     }
   }, []) // passing props.persons would mean this is executed whenever this property is changed.  Empty means only on load and unmount (compDidMount)
@@ -42,7 +46,7 @@ const cockpit = (props) => {
       <h1>{props.title}</h1>
 
       <p className={assignedClasses.join(" ")}>This is really working</p>
-      <button className={btnClass.join(" ")} onClick={props.toggle}>
+      <button ref={buttonRef} className={btnClass.join(" ")} onClick={props.toggle}>
         Toggle People
       </button>
     </div>

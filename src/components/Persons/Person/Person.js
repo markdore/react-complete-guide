@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./Person.css";
 import styled from "styled-components";
-import Aux from '../../../hoc/Aux';
-import PropTypes from 'prop-types';
+import Aux from "../../../hoc/Aux";
+import PropTypes from "prop-types";
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -17,10 +17,20 @@ const StyledDiv = styled.div`
   }
 `;
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+
+  componentDidMount() {
+    //   this.inputElementRef.focus();
+    this.inputElementRef.current.focus();
+  }
+
   render() {
     console.log("[Person.js] rendering");
     return (
-      <Aux> 
+      <Aux>
         <StyledDiv>
           <p onClick={this.props.click}>
             I am {this.props.name} and I am {this.props.age} years old
@@ -30,6 +40,10 @@ class Person extends Component {
             type="text"
             onChange={this.props.changed}
             value={this.props.name}
+            ref={this.inputElementRef}
+            // ref={(inputElem) => {
+            //   inputElem.focus();
+            // }}
           ></input>
         </StyledDiv>
         <StyledDiv>
@@ -41,10 +55,10 @@ class Person extends Component {
 }
 
 Person.propTypes = {
-    click: PropTypes.func,
-    changed: PropTypes.func,
-    name: PropTypes.string,
-    age: PropTypes.number
+  click: PropTypes.func,
+  changed: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
 };
 
 export default Person;

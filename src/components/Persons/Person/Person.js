@@ -3,6 +3,7 @@ import "./Person.css";
 import styled from "styled-components";
 import Aux from "../../../hoc/Aux";
 import PropTypes from "prop-types";
+import AuthContext from "../../../context/auth-context";
 
 const StyledDiv = styled.div`
   width: 60%;
@@ -22,9 +23,11 @@ class Person extends Component {
     this.inputElementRef = React.createRef();
   }
 
+
   componentDidMount() {
     //   this.inputElementRef.focus();
     this.inputElementRef.current.focus();
+    //console.log('authenticated: ' + this.context.authenticated)
   }
 
   render() {
@@ -32,6 +35,15 @@ class Person extends Component {
     return (
       <Aux>
         <StyledDiv>
+          <AuthContext.Consumer>
+            {(context) =>
+              context.authenticated ? (
+                <p>Authenticated</p>
+              ) : (
+                <p>Please log in</p>
+              )
+            }
+          </AuthContext.Consumer>
           <p onClick={this.props.click}>
             I am {this.props.name} and I am {this.props.age} years old
           </p>
@@ -46,9 +58,7 @@ class Person extends Component {
             // }}
           ></input>
         </StyledDiv>
-        <StyledDiv>
-          <p>Extra spacing for adjacent top level element</p>
-        </StyledDiv>
+        <p>----------</p> {/* Extra spacing for adjacent top level element */}
       </Aux>
     );
   }

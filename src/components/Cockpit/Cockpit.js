@@ -16,11 +16,19 @@ const cockpit = (props) => {
     }
   }, []) // passing props.persons would mean this is executed whenever this property is changed.  Empty means only on load and unmount (compDidMount)
 
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect');
+
+    return () => {
+      console.log('[Cockpit.js] cleanUp functionality in 2nd useEffect'); 
+    }
+  }) // passing no extra param will mean it runs on all events
+  
   const assignedClasses = [];
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     assignedClasses.push(classes.red);
   }
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     assignedClasses.push(classes.bold);
   }
 
@@ -41,4 +49,4 @@ const cockpit = (props) => {
   );
 };
 
-export default cockpit;
+export default React.memo(cockpit); // only re-render if something has changed
